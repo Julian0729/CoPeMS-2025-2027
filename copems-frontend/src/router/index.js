@@ -1,36 +1,49 @@
-/**
- * router/index.ts
- *
- * Automatic routes for `./src/pages/*.vue`
- */
-
-// Composables
-import { createRouter, createWebHistory } from 'vue-router'
-import { setupLayouts } from 'virtual:generated-layouts'
-import { routes } from 'vue-router/auto-routes'
+import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: setupLayouts(routes),
-})
-
-// Workaround for https://github.com/vitejs/vite/issues/11804
-router.onError((err, to) => {
-  if (err?.message?.includes?.('Failed to fetch dynamically imported module')) {
-    if (localStorage.getItem('vuetify:dynamic-reload')) {
-      console.error('Dynamic import error, reloading page did not fix it', err)
-    } else {
-      console.log('Reloading page to fix dynamic import error')
-      localStorage.setItem('vuetify:dynamic-reload', 'true')
-      location.assign(to.fullPath)
-    }
-  } else {
-    console.error(err)
-  }
-})
-
-router.isReady().then(() => {
-  localStorage.removeItem('vuetify:dynamic-reload')
-})
-
-export default router
+  history: createWebHistory(process.env.BASE_URL),
+  routes: [
+    {
+      path: "/",
+      component: () => import("@/layouts/MainLayout.vue"),
+      children: [
+        {
+          path: "",
+          name: "Applicant-Homepage",
+          component: () => import("@/pages/Applicant-Homepage.vue"),
+        },
+        {
+          path: "Applicant-Login",
+          name: "Applicant-Login",
+          component: () => import("@/pages/Applicant-Login.vue"),
+        },
+        {
+          path: "Applicant-Registration",
+          name: "Applicant-Registration",
+          component: () => import("@/pages/Applicant-Registration.vue"),
+        },
+        {
+          path: "register",
+          name: "register",
+          component: () => import("@/pages/Applicant-Registration.vue"),
+        },
+        {
+          path: "Applicant-bpInquiry",
+          name: "Applicant-bpInquiry",
+          component: () => import("@/pages/Applicant-bpInquiry.vue"),
+        },
+        {
+          path: "Applicant-opInquiry",
+          name: "Applicant-opInquiry",
+          component: () => import("@/pages/Applicant-opInquiry.vue"),
+        },
+        {
+          path: "Applicant-ForgotPW",
+          name: "Applicant-ForgotPW",
+          component: () => import("@/pages/Applicant-ForgotPW.vue"),
+        },
+      ],
+    },
+  ],
+});
+export default router;
