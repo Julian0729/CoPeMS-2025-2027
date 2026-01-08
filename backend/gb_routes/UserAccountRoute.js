@@ -3,6 +3,13 @@ import { getUserAccountByUsername } from '../gb_controllers/UserAccountControlle
 
 const router = express.Router();
 
-router.get('/userAccount/:username', getUserAccountByUsername);
+console.log('UserAccountRoute: Setting up routes...');
+
+router.get('/userAccount/:username', (req, res, next) => {
+    console.log('Route hit: /userAccount/' + req.params.username);
+    next();
+}, getUserAccountByUsername);
+
+console.log('UserAccountRoute: Routes configured');
 
 export default router;

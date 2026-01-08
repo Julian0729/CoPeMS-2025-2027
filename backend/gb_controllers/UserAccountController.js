@@ -17,6 +17,8 @@ export const getUserAccountByUsername = async (req, res) => {
     }
     catch (error){
         console.error('UserAccountController Error:', error);
-        res.status(500).json({error: 'Server error fetching user account'});
+        console.error('Error stack:', error.stack);
+        console.error('Error message:', error.message);
+        res.status(500).json({error: 'Server error fetching user account', details: error.message});
     }
 };
