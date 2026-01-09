@@ -90,6 +90,11 @@ const router = createRouter({
           name: "bpadetails",
           component: () => import("@/module/BP/BPADetails.vue"),
         },
+        {
+          path: "homepage",
+          name: "homepage",
+          component: () => import("@/module/BP/HomePage.vue"),
+        },
       ],
     },
   ],
