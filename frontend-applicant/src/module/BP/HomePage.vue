@@ -36,7 +36,7 @@
         <p class="hero-description">
           The <strong>Construction Permit Management System</strong> is a
           comprehensive digital platform designed to streamline and simplify the
-          entire <strong>building permit application</strong> process. Our
+          process of <strong>building permit application</strong> process. Our
           <strong>one-stop shop system</strong> provides citizens, contractors,
           and developers with convenient access to essential services including
           <strong>building permit applications</strong>,
